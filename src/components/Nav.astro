@@ -1,0 +1,209 @@
+---
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/blog/", label: "Library" },
+  { href: "/mission/", label: "Mission" },
+  { href: "/quizzes/", label: "Quizzes" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a
+      href="/"
+      class="site-logo"
+      aria-label="Valhouette Scribe — Return to home"
+    >
+      <img
+        src="/logo.svg"
+        alt=""
+        class="site-logo__image"
+        width="73"
+        height="22"
+        decoding="async"
+      />
+      <span class="site-logo__text">Valhouette Scribe</span>
+    </a>
+
+    <button
+      class="nav-toggle"
+      id="nav-toggle"
+      aria-controls="main-nav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+    </button>
+
+    <nav class="site-nav" id="main-nav" aria-label="Main navigation">
+      <ul class="site-nav__list">
+        {
+          navLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class={`site-nav__link${currentPath === link.href || (link.href !== "/" && currentPath.startsWith(link.href)) ? " site-nav__link--active" : ""}`}
+                aria-current={
+                  currentPath === link.href ||
+                  (link.href !== "/" && currentPath.startsWith(link.href))
+                    ? "page"
+                    : undefined
+                }
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script src="/js/nav.js" defer></script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding-block: 1.1rem;
+  }
+
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  /* Wordmark */
+  .site-logo {
+    text-decoration: none;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    transition: opacity 0.2s ease;
+  }
+  .site-logo__image {
+    display: block;
+    height: 22px;
+    width: auto;
+    opacity: 0.95;
+  }
+  .site-logo__text {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--heading);
+    white-space: nowrap;
+    opacity: 0.95;
+  }
+  .site-logo:hover .site-logo__image,
+  .site-logo:hover .site-logo__text {
+    opacity: 1;
+  }
+
+  /* Desktop nav */
+  .site-nav__list {
+    display: flex;
+    gap: 2.25rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .site-nav__link {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    padding-bottom: 3px;
+    border-bottom: 1px solid transparent;
+    transition:
+      color 0.2s ease,
+      border-color 0.2s ease;
+  }
+  .site-nav__link:hover,
+  .site-nav__link--active {
+    color: var(--heading);
+    border-bottom-color: var(--accent);
+  }
+
+  /* Hamburger */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 10;
+  }
+  .nav-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  .nav-toggle__bar {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--heading);
+    transition:
+      transform 0.2s ease,
+      opacity 0.2s ease;
+    transform-origin: center;
+  }
+  .nav-toggle.is-open .nav-toggle__bar:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+  .nav-toggle.is-open .nav-toggle__bar:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-toggle.is-open .nav-toggle__bar:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+
+  /* Mobile */
+  @media (max-width: 640px) {
+    .nav-toggle {
+      display: flex;
+    }
+
+    .site-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem clamp(1rem, 5vw, 2.5rem);
+    }
+    .site-nav.is-open {
+      display: block;
+    }
+
+    .site-nav__list {
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .site-nav__link {
+      font-size: 0.875rem;
+    }
+  }
+</style>

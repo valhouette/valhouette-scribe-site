@@ -1,0 +1,231 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const allPosts = await getCollection("blogs", ({ data }) => !data.draft);
+const posts = allPosts.sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
+);
+
+function fmt(d: Date): string {
+  return d.toLocaleDateString("en-GB", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+---
+
+<BaseLayout
+  title="Blogs | Valhouette Scribe"
+  description="Blogs on attention, judgment, and the quiet ways a hyper-connected world reshapes inner life."
+>
+  <section class="section">
+    <div class="container container--wide">
+      <header class="page-header">
+        <p class="page-eyebrow">THE LIBRARY</p>
+        <h1 class="page-title">Essays</h1>
+        <p class="page-lead">
+          A growing collection of essays exploring attention, consciousness,
+          technology, meaning, and the hidden architecture shaping modern life.
+        </p>
+        <hr class="page-rule" />
+      </header>
+
+      {
+        posts.length > 0 ? (
+          <>
+            <div class="search-wrap">
+              <form id="blog-search-form">
+                <label class="sr-only" for="blog-search">
+                  Search blog posts
+                </label>
+                <input
+                  type="search"
+                  id="blog-search"
+                  placeholder="Search the library..."
+                  aria-label="Search blog posts"
+                  autocomplete="on"
+                />
+                <button type="submit" class="btn" aria-label="Search blog posts">
+                  Search
+                </button>
+              </form>
+            </div>
+
+            <div class="blog-grid">
+              {posts.map((post) => (
+                <article class="blog-card post-item">
+                  <div class="blog-card__body">
+                    <time
+                      class="blog-card__date"
+                      datetime={post.data.publishDate.toISOString()}
+                    >
+                      {fmt(post.data.publishDate)}
+                    </time>
+                    <h2 class="blog-card__title post-title">
+                      <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+                    </h2>
+                    <p class="blog-card__desc post-desc">
+                      {post.data.description}
+                    </p>
+
+                    <div class="blog-card__footer">
+                      <a
+                        href={`/blog/${post.id}/`}
+                        class="btn-primary"
+                        aria-label={`Read ${post.data.title}`}
+                      >
+                        Read Essay
+                      </a>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </>
+        ) : (
+          <p class="empty-state">
+            The library is growing. New essays are added as the work develops.
+          </p>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-header {
+    margin-bottom: 3rem;
+  }
+
+  .page-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .page-title {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    margin-bottom: 1rem;
+  }
+
+  .page-lead {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 60ch;
+    margin-bottom: 0;
+  }
+
+  .page-rule {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin-top: 2.5rem;
+    margin-bottom: 0;
+  }
+
+  /* Blog grid */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr));
+    gap: 1.5rem;
+  }
+
+  .blog-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    transition:
+      border-color 0.25s ease,
+      box-shadow 0.25s ease,
+      transform 0.25s ease;
+  }
+  .blog-card:hover {
+    border-color: var(--border-hover);
+    box-shadow:
+      0 0 0 1px rgba(254, 252, 232, 0.08),
+      0 4px 24px rgba(181, 169, 142, 0.08);
+    transform: translateY(-1px);
+  }
+
+  .blog-card__body {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex: 1;
+  }
+
+  .blog-card__date {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .blog-card__title {
+    font-size: clamp(1.3rem, 2.5vw, 1.65rem);
+    line-height: 1.2;
+    margin: 0;
+    color: var(--heading);
+  }
+  .blog-card__title a {
+    color: var(--heading);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .blog-card__title a:hover {
+    color: var(--accent-warm);
+  }
+
+  .blog-card__desc {
+    font-size: 0.9375rem;
+    color: var(--muted);
+    line-height: 1.75;
+    margin: 0;
+    flex: 1;
+  }
+
+  .blog-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    margin-top: 0.75rem;
+  }
+
+  .empty-state {
+    color: var(--muted);
+    font-style: italic;
+    padding-top: 2rem;
+  }
+
+  .search-wrap {
+    margin-bottom: 2.5rem;
+  }
+
+  .search-wrap form {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+
+  #blog-search {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+</style>
+
+<script src="/js/blog-search.js" defer></script>

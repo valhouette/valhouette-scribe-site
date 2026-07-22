@@ -1,0 +1,185 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Quizzes | Valhouette Scribe"
+  description="Self-diagnostic tools for digitally saturated adults. All quizzes run entirely in your browser. Nothing is transmitted, stored, or seen by anyone else."
+>
+  <section class="quiz-hub">
+    <div class="hub-inner">
+      <p class="hub-eyebrow">Quizzes</p>
+      <h1 class="hub-title">Reflection Exercises</h1>
+      <p class="hub-intro">
+        Each reflection exercise explores a different aspect of modern life.
+        They are designed to help you examine your own patterns of attention,
+        identity, presence, and perception. The purpose is to help you see
+        yourself more clearly.
+      </p>
+
+      <a href="/quizzes/calibration-index" class="hub-card hub-card--featured">
+        <span class="hub-card__badge">Recommended First</span>
+        <h2 class="hub-card__title">The Calibration Index</h2>
+        <p class="hub-card__desc">
+          An exploration of attention, stimulation, and your current
+          relationship with digital life. Designed as the starting point for
+          understanding your patterns.
+        </p>
+        <span class="hub-card__meta"
+          >13 questions · ~3 minutes · tiered result</span
+        >
+        <span class="hub-card__cta">Begin Reflection → </span>
+      </a>
+
+      <div class="hub-grid">
+        <a href="/quizzes/attention-audit" class="hub-card">
+          <h2 class="hub-card__title">The Attention Audit</h2>
+          <p class="hub-card__desc">
+            Where does your focus actually live - on the task in front of you,
+            or scattered across everything else running in the background.
+          </p>
+          <span class="hub-card__meta"
+            >13 questions · ~3 minutes · tiered result</span
+          >
+          <span class="hub-card__cta">Begin Reflection →</span>
+        </a>
+        <a href="/quizzes/borrowed-self-inventory" class="hub-card">
+          <h2 class="hub-card__title">The Borrowed Self Inventory</h2>
+          <p class="hub-card__desc">
+            How much of your taste, opinions, and ambitions are actually yours -
+            and how much has been absorbed without you noticing.
+          </p>
+          <span class="hub-card__meta"
+            >13 questions · ~3 minutes · raw score</span
+          >
+          <span class="hub-card__cta">Begin Reflection →</span>
+        </a>
+        <a href="/quizzes/solitude-tolerance-test" class="hub-card">
+          <h2 class="hub-card__title">The Solitude Tolerance Test</h2>
+          <p class="hub-card__desc">
+            How long can you actually be alone - with no input, no task, no one
+            watching - before it becomes unbearable.
+          </p>
+          <span class="hub-card__meta"
+            >13 questions · ~3 minutes · tiered result</span
+          >
+          <span class="hub-card__cta">Begin Reflection →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style is:global>
+  .quiz-hub {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 5rem;
+  }
+  .hub-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .hub-eyebrow {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #9ca3af;
+    margin: 0 0 1rem;
+  }
+  .hub-title {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    color: #fefce8;
+    font-weight: 500;
+    margin: 0 0 1.25rem;
+    line-height: 1.1;
+  }
+  .hub-intro {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.95rem;
+    color: #9ca3af;
+    line-height: 1.85;
+    max-width: 58ch;
+    margin: 0 0 3rem;
+  }
+  .hub-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    background-color: #243b3b;
+    border-radius: 2px;
+    padding: 2rem 2.25rem;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid rgba(255, 254, 226, 0.08);
+    transition:
+      border-color 0.25s ease,
+      transform 0.25s ease;
+    margin-bottom: 1.25rem;
+  }
+  .hub-card:hover {
+    border-color: rgba(255, 254, 226, 0.25);
+    transform: translateY(-1px);
+  }
+  .hub-card--featured {
+    padding: 2.5rem 2.25rem;
+    border-color: rgba(255, 254, 226, 0.15);
+    margin-bottom: 2rem;
+  }
+  .hub-card__badge {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #1a2e2e;
+    background: #b5a98e;
+    padding: 0.25rem 0.6rem;
+    align-self: flex-start;
+    margin-bottom: 0.5rem;
+  }
+  .hub-card__title {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    color: #fefce8;
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.2;
+  }
+  .hub-card__desc {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.9375rem;
+    color: #9ca3af;
+    line-height: 1.75;
+    margin: 0;
+  }
+  .hub-card__meta {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #9ca3af;
+    opacity: 0.7;
+  }
+  .hub-card__cta {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    color: #b5a98e;
+    margin-top: 0.5rem;
+  }
+  .hub-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+    gap: 1rem;
+    margin-bottom: 0;
+  }
+  .hub-grid .hub-card {
+    margin-bottom: 0;
+  }
+</style>

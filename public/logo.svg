@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="250 600 1000 300" role="img" aria-label="Valhouette Scribe">
+  <defs>
+    <clipPath id="b"><path d="M.656.691H267.63V269.31H.656Zm0 0"/></clipPath>
+    <clipPath id="d"><path d="M.656.691H267.63V269.31H.656Zm0 0"/></clipPath>
+    <clipPath id="c"><path d="M0 0h268v270H0z"/></clipPath>
+    <clipPath id="e"><path d="M682.371.691h266.973V269.31H682.37Zm0 0"/></clipPath>
+    <clipPath id="g"><path d="M.371.691h266.973V269.31H.37Zm0 0"/></clipPath>
+    <clipPath id="f"><path d="M0 0h268v270H0z"/></clipPath>
+    <clipPath id="h"><path d="M341.23.691h267.81v268.856H341.23Zm0 0"/></clipPath>
+    <clipPath id="i"><path d="M475.133 269.309 609.039.69H341.23Zm0 0"/></clipPath>
+    <clipPath id="k"><path d="M.23.691h267.81v268.707H.23Zm0 0"/></clipPath>
+    <clipPath id="l"><path d="M134.133 269.309 268.039.69H.23Zm0 0"/></clipPath>
+    <clipPath id="j"><path d="M0 0h269v270H0z"/></clipPath>
+    <clipPath id="a"><path d="M0 0h950v270H0z"/></clipPath>
+  </defs>
+  <g clip-path="url(#a)" transform="translate(275 615)">
+    <g clip-path="url(#b)">
+      <g clip-path="url(#c)">
+        <g clip-path="url(#d)">
+          <path fill="#a6a6a6" d="M.656.691H267.63v269.055H.656Zm0 0"/>
+        </g>
+      </g>
+    </g>
+    <g clip-path="url(#e)">
+      <g clip-path="url(#f)" transform="translate(682)">
+        <g clip-path="url(#g)">
+          <path fill="#fff" d="M.371.691h266.973v269.055H.37Zm0 0"/>
+        </g>
+      </g>
+    </g>
+    <g clip-path="url(#h)">
+      <g clip-path="url(#i)">
+        <g clip-path="url(#j)" transform="translate(341)">
+          <g clip-path="url(#k)">
+            <g clip-path="url(#l)">
+              <path fill="#fffee2" d="M.23.691h267.81v268.856H.23Zm0 0"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

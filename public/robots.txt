@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://valhouettescribe.com/sitemap-index.xml

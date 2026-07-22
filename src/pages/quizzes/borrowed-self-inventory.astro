@@ -1,0 +1,423 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const questions = [
+  {
+    prompt: "When you like something, you usually know why because:",
+    options: [
+      "You can trace it to your own experience or history",
+      "You can mostly explain it, with a little uncertainty",
+      "It's hard to say - it just seems like what's good",
+      "You liked it before you noticed everyone else did too",
+    ],
+  },
+  {
+    prompt: "Your current ambitions feel:",
+    options: [
+      "Specific to you, built over years",
+      "Yours, shaped a little by people you admire",
+      "Hard to separate from what looks impressive to others",
+      "Suspiciously similar to what performs well online",
+    ],
+  },
+  {
+    prompt: "When you picture your ideal life, the images come from:",
+    options: [
+      "Your own memory and imagination",
+      "A mix of your own life and things you've seen",
+      "Mostly things you've seen - interiors, routines, aesthetics",
+      "A specific feed or account, if you're honest",
+    ],
+  },
+  {
+    prompt:
+      "If you changed your opinion on something recently, it was because:",
+    options: [
+      "New experience or evidence changed your mind",
+      "A conversation with someone you trust",
+      "Something you read or watched shifted your framing",
+      "You're not sure - it just changed, somewhere in the scroll",
+    ],
+  },
+  {
+    prompt: "Your sense of what's good taste in your field of interest is:",
+    options: [
+      "Built from direct exposure over a long time",
+      "Mostly your own, with some borrowed reference points",
+      "Largely inherited from people whose taste you follow",
+      "Whatever is currently being praised in your feed",
+    ],
+  },
+  {
+    prompt: "When you make a big decision, the voice you're listening to is:",
+    options: [
+      "Clearly your own",
+      "Yours, checked against a few trusted people",
+      "A composite of advice you've absorbed from content",
+      "Hard to locate - more like an average of opinions you've seen",
+    ],
+  },
+  {
+    prompt: "The way you talk about your own feelings uses:",
+    options: [
+      "Plain language that's always been yours",
+      "Mostly your own words, some borrowed terms",
+      "A fair amount of language from therapy content or online discourse",
+      "Phrases you recognise from captions more than conversation",
+    ],
+  },
+  {
+    prompt:
+      "If your favourite accounts disappeared tomorrow, your preferences would:",
+    options: [
+      "Barely change - they weren't the source",
+      "Shift slightly in emphasis",
+      "Feel unmoored for a while",
+      "Change more than you'd like to admit",
+    ],
+  },
+  {
+    prompt: "When you achieve something, the first feeling is about:",
+    options: [
+      "How it feels internally, privately",
+      "The internal feeling, then who to tell",
+      "How it will look described to others",
+      "How it will look, before it's even finished",
+    ],
+  },
+  {
+    prompt:
+      "The last time you were genuinely proud of something, the pride was mostly about:",
+    options: [
+      "What it meant to you, privately",
+      "What it meant to you, with a little thought to others",
+      "How it would be received once shared",
+      "How it would look before you'd even shared it",
+    ],
+  },
+  {
+    prompt: "Your style or appearance choices come mostly from:",
+    options: [
+      "What you've always gravitated toward",
+      "A mix of your own instinct and outside reference",
+      "Trends you've absorbed without fully choosing them",
+      "Whatever is currently circulating in your feed",
+    ],
+  },
+  {
+    prompt: "When you disagree with a popular opinion, you:",
+    options: [
+      "Say so, without much hesitation",
+      "Say so, but brace for pushback",
+      "Often keep it to yourself",
+      "Quietly wonder if you're the one who's wrong, by default",
+    ],
+  },
+  {
+    prompt:
+      "If you had to describe your personality without referencing anything external, you would:",
+    options: [
+      "Do it easily, in plain terms",
+      "Manage it, with a little effort",
+      "Struggle to find language that isn't borrowed",
+      "Find it genuinely difficult to locate anything that feels fully yours",
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="The Borrowed Self Inventory - Valhouette Scribe"
+  description="13 questions on how much of your taste, opinions, and ambitions are actually yours."
+>
+  <div class="quiz-layout">
+    <div class="quiz-layout__main">
+      <section class="quiz-wrap">
+        <div class="container container--content">
+          <div class="card" id="quiz-card">
+            <header class="quiz-header">
+              <p class="quiz-eyebrow">Quiz</p>
+              <h1 class="quiz-title">The Borrowed Self Inventory</h1>
+              <p class="quiz-intro">
+                Thirteen questions on the distinction between what you actually
+                want and what you have been shown to want.
+              </p>
+            </header>
+            <div class="progress-bar" aria-hidden="true">
+              <div class="progress-bar__fill" id="progress"></div>
+            </div>
+            <p class="progress-label" id="progress-label">Question 1 of 13</p>
+            <div id="quiz-body">
+              <div class="question-block" id="question-block">
+                <p class="question-text" id="question-text"></p>
+                <div class="options" id="options"></div>
+                <button class="btn-primary" id="next-btn" hidden>Next</button>
+              </div>
+              <div class="result-block hidden" id="result-block">
+                <p class="result-eyebrow">Your result</p>
+                <h2 class="result-name" id="result-name"></h2>
+                <p class="result-para" id="result-para"></p>
+                <p class="result-private">
+                  This result is private to your device. Nothing was transmitted
+                  or stored.
+                </p>
+                <div class="result-actions">
+                  <a class="result-return" href="/quizzes/">← All Quizzes</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <aside class="quiz-layout__sidebar">
+      <nav class="quiz-nav" aria-label="Other quizzes">
+        <p class="quiz-nav__label">Other Quizzes</p>
+        <div class="quiz-nav__grid">
+          <a class="quiz-nav__card" href="/quizzes/calibration-index">
+            <span class="quiz-nav__title">The Calibration Index</span>
+            <span class="quiz-nav__meta">13 questions · calibration</span>
+          </a>
+          <a class="quiz-nav__card" href="/quizzes/attention-audit">
+            <span class="quiz-nav__title">The Attention Audit</span>
+            <span class="quiz-nav__meta">13 questions · attention</span>
+          </a>
+          <a class="quiz-nav__card" href="/quizzes/solitude-tolerance-test">
+            <span class="quiz-nav__title">The Solitude Tolerance Test</span>
+            <span class="quiz-nav__meta">13 questions · solitude</span>
+          </a>
+        </div>
+        <a class="quiz-nav__all" href="/quizzes/">View all quizzes</a>
+      </nav>
+    </aside>
+  </div>
+</BaseLayout>
+
+<script src="/js/quizzes/borrowed-self-inventory.js" defer></script>
+
+<style is:global>
+  .quiz-wrap {
+    padding-block: clamp(4rem, 8vw, 7rem);
+  }
+  .quiz-header {
+    margin-bottom: 2.5rem;
+  }
+  .quiz-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .quiz-title {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+  }
+  .quiz-intro {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 56ch;
+  }
+  .progress-bar {
+    height: 2px;
+    background: var(--border);
+    margin-bottom: 0.5rem;
+  }
+  .progress-bar__fill {
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.3s ease;
+    width: 0%;
+  }
+  .progress-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2rem;
+  }
+  .question-text {
+    font-family: var(--font-serif);
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    color: var(--heading);
+    line-height: 1.4;
+    margin-bottom: 1.75rem;
+  }
+  .options {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .option {
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--body);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    cursor: pointer;
+    transition:
+      border-color 0.2s ease,
+      background 0.2s ease;
+  }
+  .option:hover {
+    border-color: var(--border-hover);
+    background: rgba(254, 252, 232, 0.04);
+  }
+  .option.selected {
+    border-color: var(--accent);
+    background: rgba(181, 169, 142, 0.08);
+    color: var(--heading);
+  }
+  .hidden {
+    display: none;
+  }
+  .result-block {
+    padding-top: 1rem;
+  }
+  .result-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .result-name {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    margin-bottom: 1.25rem;
+  }
+  .result-para {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.85;
+    max-width: 56ch;
+    margin-bottom: 1.5rem;
+  }
+  .result-private {
+    font-size: 0.8rem;
+    color: var(--muted);
+    opacity: 0.6;
+    margin-bottom: 2rem;
+  }
+  .result-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .result-return {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .quiz-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 2.5rem;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 2rem 2rem 4rem;
+    align-items: start;
+  }
+
+  .quiz-layout__main {
+    min-width: 0;
+  }
+
+  .quiz-layout__sidebar {
+    position: sticky;
+    top: 2rem;
+  }
+
+  .quiz-nav {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .quiz-nav__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .quiz-nav__card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    background-color: #243b3b;
+    border: 1px solid rgba(255, 254, 226, 0.08);
+    border-radius: 2px;
+    padding: 1.1rem 1.25rem;
+    text-decoration: none;
+    color: inherit;
+    transition:
+      border-color 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .quiz-nav__card:hover {
+    border-color: rgba(255, 254, 226, 0.25);
+    transform: translateY(-1px);
+  }
+
+  .quiz-nav__label {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #9ca3af;
+    margin: 0 0 1.25rem;
+  }
+
+  .quiz-nav__title {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 1.05rem;
+    color: #fefce8;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .quiz-nav__meta {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #9ca3af;
+  }
+
+  .quiz-nav__all {
+    display: block;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    color: #9ca3af;
+    text-decoration: none;
+    margin-top: 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .quiz-nav__all:hover {
+    color: #fefce8;
+  }
+
+  @media (max-width: 768px) {
+    .quiz-layout {
+      grid-template-columns: 1fr;
+      padding: 1.5rem 1.25rem 3rem;
+      gap: 2rem;
+    }
+
+    .quiz-layout__sidebar {
+      position: static;
+    }
+  }
+</style>

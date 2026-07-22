@@ -1,0 +1,72 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Page Not Found | Valhouette Scribe"
+  description="The page you are looking for does not exist."
+  noindex={true}
+>
+  <section class="section not-found">
+    <div class="container container--content not-found__inner">
+      <p class="not-found__number" aria-hidden="true">404</p>
+      <h1 class="not-found__title">This page is not here</h1>
+      <div class="divider" aria-hidden="true"></div>
+      <p class="not-found__body">
+        The page you followed does not exist, or has been moved. This is not the
+        quiet room. There is nothing useful here. Return to something that is.
+      </p>
+      <div class="not-found__actions">
+        <a href="/" class="btn-primary">Return Home</a>
+        <a href="/quizzes/" class="btn">Take a Quiz</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    background-color: var(--bg);
+  }
+
+  .not-found__inner {
+    text-align: center;
+    padding-block: 2rem;
+  }
+
+  .not-found__number {
+    font-family: var(--font-serif);
+    font-size: clamp(6rem, 18vw, 12rem);
+    font-weight: 500;
+    color: var(--heading);
+    line-height: 1;
+    opacity: 0.06;
+    letter-spacing: -0.02em;
+    margin-bottom: -1rem;
+    user-select: none;
+  }
+
+  .not-found__title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    margin-bottom: 0;
+  }
+
+  .not-found__body {
+    font-size: 1.0625rem;
+    color: var(--muted);
+    line-height: 1.85;
+    max-width: 44ch;
+    margin-inline: auto;
+    margin-bottom: 2.5rem;
+  }
+
+  .not-found__actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+</style>

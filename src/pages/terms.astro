@@ -1,0 +1,164 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const updated = "2026-07-11";
+---
+
+<BaseLayout
+  title="Terms of Use | Valhouette Scribe"
+  description="Terms of Use for Valhouette Scribe. Governs use of this website and its content."
+>
+  <section class="section">
+    <div class="container container--content">
+      <header class="page-header">
+        <p class="page-eyebrow">Guidelines</p>
+        <h1 class="page-title">Terms of Use</h1>
+        <p class="page-updated">Last updated: {updated}</p>
+        <hr class="page-rule" />
+      </header>
+
+      <div class="legal-body">
+        <h2>Using this website</h2>
+
+        <p>By using Valhouette Scribe, you agree to these Terms of Use.</p>
+
+        <h2>Intellectual property</h2>
+
+        <p>
+          Every essay, quiz, image, illustration, and piece of writing published
+          on Valhouette Scribe is original work unless stated otherwise.
+        </p>
+
+        <p>
+          You're welcome to quote short passages with proper attribution. If
+          you'd like to reproduce or license any material, please get in touch
+          first.
+        </p>
+
+        <h2>Website use</h2>
+
+        <p>
+          You're welcome to read, share links to, and reference this website for
+          personal and educational purposes.
+        </p>
+
+        <p>
+          You may not reproduce the content, scrape the website, harvest its
+          material, mirror it elsewhere, or use it to train artificial
+          intelligence models without written permission.
+        </p>
+
+        <p>
+          Please don't attempt to interfere with the operation or security of
+          the site.
+        </p>
+
+        <h2>Quizzes</h2>
+
+        <p>
+          The quizzes are reflective tools designed to encourage observation
+          rather than diagnosis.
+        </p>
+
+        <p>
+          They are not medical, psychological, or clinical assessments and
+          should not be treated as professional advice.
+        </p>
+
+        <p>
+          Every quiz runs entirely inside your browser, and no answers or
+          results are stored by Valhouette Scribe.
+        </p>
+
+        <h2>No warranties</h2>
+
+        <p>
+          The content on this website is provided for reflection, education, and
+          general information. While every effort is made to ensure accuracy, no
+          guarantee is made that every essay or resource will be complete,
+          current, or suitable for every individual.
+        </p>
+        <h2>Limitation of liability</h2>
+        <p>
+          To the fullest extent permitted by law, Valhouette Scribe shall not be
+          liable for any indirect, incidental, consequential, special, or
+          punitive damages arising from your use of this site or any content
+          accessed through it, even if advised of the possibility of such
+          damages.
+        </p>
+
+        <h2>External links</h2>
+        <p>
+          This site may contain links to external websites. These links are
+          provided for convenience only. Valhouette Scribe does not endorse,
+          control, or take responsibility for the content, practices, or
+          policies of any external site. Your use of any external site is
+          subject to that site's own terms.
+        </p>
+
+        <h2>Changes</h2>
+
+        <p>
+          These terms may occasionally be updated as the website grows. The
+          latest revision date will always appear at the top of this page.
+        </p>
+
+        <h2>Contact</h2>
+
+        <p>
+          If you have questions about these terms, you can contact Valhouette
+          Scribe at
+          <a href="mailto:contact@valhouettescribe.com">
+            contact@valhouettescribe.com
+          </a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-header {
+    margin-bottom: 2.5rem;
+  }
+  .page-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .page-title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    margin-bottom: 0.5rem;
+  }
+  .page-updated {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin: 0;
+  }
+  .page-rule {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin-top: 2rem;
+    margin-bottom: 0;
+  }
+  .legal-body h2 {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    margin-top: 2.5rem;
+    margin-bottom: 0.9rem;
+  }
+  .legal-body p {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--body);
+  }
+  .legal-body a {
+    border-bottom: 1px solid var(--border-hover);
+    padding-bottom: 1px;
+  }
+  .legal-body a:hover {
+    border-bottom-color: var(--accent-warm);
+    color: var(--heading);
+  }
+</style>

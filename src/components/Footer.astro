@@ -1,0 +1,92 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <p class="site-footer__brand">Valhouette Scribe</p>
+    <p class="site-footer__tagline">
+      The depth of presence in a hyper-connected world.
+    </p>
+
+    <nav class="site-footer__nav" aria-label="Footer navigation">
+      <a href="/quizzes/">Quizzes</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/privacy-policy/">Privacy Policy</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/terms/">Terms of Use</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/rss.xml" type="application/rss+xml">RSS</a>
+    </nav>
+
+    <p class="site-footer__copy">
+      &copy; {year} Valhouette Scribe. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding-block: 3rem;
+    margin-top: auto;
+  }
+
+  .site-footer__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.65rem;
+    text-align: center;
+  }
+
+  .site-footer__brand {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    color: var(--heading);
+    letter-spacing: 0.03em;
+    margin: 0;
+    line-height: 1;
+  }
+
+  .site-footer__tagline {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-style: italic;
+    margin: 0;
+    line-height: 1;
+  }
+
+  .site-footer__nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.9rem;
+    justify-content: center;
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .site-footer__nav a {
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.2s ease;
+  }
+  .site-footer__nav a:hover {
+    color: var(--accent-warm);
+  }
+
+  .site-footer__nav span {
+    color: var(--border-hover);
+  }
+
+  .site-footer__copy {
+    font-size: 0.72rem;
+    color: var(--muted);
+    opacity: 0.5;
+    margin: 0;
+    line-height: 1;
+    margin-top: 0.35rem;
+  }
+</style>

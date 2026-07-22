@@ -1,0 +1,231 @@
+---
+import "../styles/global.css";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+  ogType?: "website" | "article";
+  publishDate?: string;
+  updatedDate?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonicalUrl,
+  ogImage,
+  ogType = "website",
+  publishDate,
+  updatedDate,
+  noindex = false,
+} = Astro.props;
+
+const siteUrl = "https://valhouettescribe.com";
+const siteName = "Valhouette Scribe";
+const authorName = "Valhouette Scribe";
+const canonical = canonicalUrl ?? new URL(Astro.url.pathname, siteUrl).href;
+const og = ogImage ?? `${siteUrl}/images/og-default.png`;
+const pageTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+const modifiedDate = updatedDate ?? publishDate;
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  url: siteUrl,
+  name: siteName,
+  description,
+  publisher: {
+    "@type": "Organization",
+    name: siteName,
+    logo: {
+      "@type": "ImageObject",
+      url: og,
+    },
+  },
+};
+
+const articleSchema =
+  ogType === "article" && publishDate
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": canonical,
+        },
+        headline: title,
+        description,
+        image: [og],
+        author: {
+          "@type": "Person",
+          name: authorName,
+        },
+        publisher: {
+          "@type": "Organization",
+          name: siteName,
+          logo: {
+            "@type": "ImageObject",
+            url: og,
+          },
+        },
+        datePublished: publishDate,
+        dateModified: modifiedDate ?? publishDate,
+      }
+    : null;
+
+const breadcrumbSchema =
+  ogType === "article"
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: siteUrl,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Library",
+            item: `${siteUrl}/blog/`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: title,
+            item: canonical,
+          },
+        ],
+      }
+    : null;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="description" content={description} />
+    <meta
+      name="robots"
+      content={noindex ? "noindex, nofollow" : "index, follow"}
+    />
+    <meta name="theme-color" content="#1a2e2e" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+
+    <title>{pageTitle}</title>
+    <link rel="canonical" href={canonical} />
+
+    <!-- Font preloads -->
+    <link
+      rel="preload"
+      href="/fonts/inter-v13-latin-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/inter-v13-latin-600.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/cormorant-garamond-v16-latin-500.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/cormorant-garamond-v16-latin-500italic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content={og} />
+    <meta
+      property="og:image:alt"
+      content="Valhouette Scribe — Essays, Tools, Reflection"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    {
+      publishDate && (
+        <meta property="article:published_time" content={publishDate} />
+      )
+    }
+    {
+      modifiedDate && (
+        <meta property="article:modified_time" content={modifiedDate} />
+      )
+    }
+    <script type="application/ld+json">
+      {JSON.stringify(websiteSchema)}
+    </script>
+    {articleSchema && (
+      <script type="application/ld+json">
+        {JSON.stringify(articleSchema)}
+      </script>
+    )}
+    {breadcrumbSchema && (
+      <script type="application/ld+json">
+        {JSON.stringify(breadcrumbSchema)}
+      </script>
+    )}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={og} />
+    <meta
+      name="twitter:image:alt"
+      content="Valhouette Scribe — Essays, Tools, Reflection"
+    />
+
+    <!-- RSS -->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={siteName}
+      href="/rss.xml"
+    />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/images/favicon.png" />
+    <link rel="manifest" href="/manifest.json" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <Nav />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

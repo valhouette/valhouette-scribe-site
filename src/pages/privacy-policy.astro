@@ -1,0 +1,193 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const updated = "2026-07-11";
+---
+
+<BaseLayout
+  title="Privacy Policy | Valhouette Scribe"
+  description="Privacy Policy for Valhouette Scribe. This site sets no tracking cookies and collects no personal data directly. All quizzes run entirely in your browser."
+  noindex={false}
+>
+  <section class="section">
+    <div class="container container--content">
+      <header class="page-header">
+        <p class="page-eyebrow">Transparency</p>
+        <h1 class="page-title">Privacy Policy</h1>
+        <p class="page-updated">Last updated: {updated}</p>
+        <hr class="page-rule" />
+      </header>
+
+      <div class="legal-body">
+        <h2>Overview</h2>
+
+        <p>
+          Valhouette Scribe exists to encourage reflection, not surveillance.
+          Respecting your privacy is part of that philosophy.
+        </p>
+
+        <p>
+          This website is intentionally simple. It does not collect personal
+          information directly, does not use analytics to follow your behaviour,
+          and does not track how you move through the site. Most pages are
+          simply files delivered to your browser.
+        </p>
+
+        <p>
+          The only exceptions are the services required to host the website and
+          any optional third-party services that may be introduced in the
+          future, such as advertising. Those are explained below.
+        </p>
+
+        <h2>What this site collects</h2>
+
+        <p>
+          Valhouette Scribe does not collect personal information directly.
+          There are no user accounts, comment sections, contact forms,
+          newsletters, or databases connected to this website.
+        </p>
+
+        <p>
+          The essays are static pages, and the quizzes run entirely inside your
+          browser. Your answers, scores, and results never leave your device.
+        </p>
+
+        <h2>Cloudflare (hosting)</h2>
+        <p>
+          This site is hosted on Cloudflare Pages. Cloudflare may collect
+          technical data including IP addresses, browser type, and request
+          timestamps as part of their standard infrastructure and security
+          operations. This data is held and processed by Cloudflare under their
+          own privacy policy, available at cloudflare.com/privacypolicy.
+          Valhouette Scribe does not have direct access to these logs.
+        </p>
+
+        <h2>Quizzes</h2>
+
+        <p>
+          Every quiz on this website runs entirely inside your browser. Nothing
+          is uploaded. Nothing is stored. Nothing is sent to Valhouette Scribe.
+        </p>
+
+        <p>
+          Your answers exist only on your own device for as long as the page
+          remains open. Closing or refreshing the page removes them completely.
+        </p>
+        <h2>Google AdSense</h2>
+        <p>
+          This site may display advertising served by Google AdSense. If AdSense
+          is active, Google may place cookies on your device and collect data
+          about your browsing behaviour for the purposes of serving relevant
+          advertising. You can review Google's privacy policy at
+          policies.google.com/privacy. You can opt out of personalised
+          advertising through your Google account settings or via your browser.
+        </p>
+        <p>
+          If AdSense is not currently active on this site, no Google advertising
+          cookies are in use.
+        </p>
+
+        <h2>Cookies</h2>
+
+        <p>
+          Valhouette Scribe does not place first-party tracking cookies on your
+          device. If third-party services such as Cloudflare or Google AdSense
+          use cookies, those are governed by their own privacy policies rather
+          than this website.
+        </p>
+
+        <h2>Your rights</h2>
+        <p>
+          If you are located in the European Economic Area, you have rights
+          under the General Data Protection Regulation (GDPR), including the
+          right to access, correct, or delete personal data held about you. If
+          you are located in South Africa, you have rights under the Protection
+          of Personal Information Act (POPIA).
+        </p>
+        <p>
+          Because Valhouette Scribe does not collect personal data directly,
+          most data subject requests should be directed to the relevant
+          third-party processor. For hosting-related data, contact Cloudflare.
+          For any other query, contact Valhouette Scribe at the address below.
+        </p>
+
+        <h2>External links</h2>
+        <p>
+          This site may contain links to external websites. Valhouette Scribe is
+          not responsible for the privacy practices or content of those sites.
+        </p>
+
+        <h2>Changes to this policy</h2>
+        <p>
+          This policy may be updated from time to time. The date at the top of
+          this page reflects the most recent revision. If this policy changes
+          significantly, the updated version will always appear on this page
+          together with its revision date.
+        </p>
+
+        <h2>Contact</h2>
+
+        <p>
+          If you have questions about privacy or this policy, you can contact
+          Valhouette Scribe at
+          <a href="mailto:contact@valhouettescribe.com">
+            contact@valhouettescribe.com
+          </a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .page-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .page-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .page-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      margin-bottom: 0.5rem;
+    }
+
+    .page-updated {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .page-rule {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+      margin-bottom: 0;
+    }
+
+    .legal-body h2 {
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      margin-top: 2.5rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .legal-body p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--body);
+    }
+
+    .legal-body a {
+      border-bottom: 1px solid var(--border-hover);
+      padding-bottom: 1px;
+    }
+    .legal-body a:hover {
+      border-bottom-color: var(--accent-warm);
+      color: var(--heading);
+    }
+  </style>
+</BaseLayout>

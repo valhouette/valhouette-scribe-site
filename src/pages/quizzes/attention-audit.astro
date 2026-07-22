@@ -1,0 +1,454 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const questions = [
+  {
+    prompt: "When you sit down to do one task, what actually happens?",
+    options: [
+      "You do that task, start to finish, without noticing time pass",
+      "You do it, but with occasional check-ins elsewhere",
+      "You do it in fragments, switching back and forth constantly",
+      "You're rarely doing just one thing - everything is simultaneous",
+    ],
+  },
+  {
+    prompt: "How many tabs, apps, or windows are open right now?",
+    options: [
+      "One or two - only what I need",
+      "A handful, mostly relevant",
+      "More than I could name from memory",
+      "I've stopped counting; it's a permanent condition",
+    ],
+  },
+  {
+    prompt: "When a notification appears while you're focused, you:",
+    options: [
+      "Barely register it until you're done",
+      "Notice it, finish your thought, then check it",
+      "Feel pulled immediately, most of the time",
+      "Have already switched before you've registered deciding to",
+    ],
+  },
+  {
+    prompt: "At the end of a working day, your mind feels:",
+    options: [
+      "Clear, like it moved through things in order",
+      "A little scattered, but settled",
+      "Full of unfinished threads you can't quite name",
+      "Like static - too many open loops to locate any single one",
+    ],
+  },
+  {
+    prompt: "When you finish reading something, you can usually:",
+    options: [
+      "Explain it clearly, in your own words, right after",
+      "Give the gist, with a little reconstruction",
+      "Recall fragments more than the shape of the whole",
+      "Barely say what it was about at all",
+    ],
+  },
+  {
+    prompt: "Your instinct when a task gets slightly boring or hard is to:",
+    options: [
+      "Stay with it until it resolves",
+      "Push through, with occasional resistance",
+      "Look for a smaller, easier task to switch to",
+      "Open something else almost automatically",
+    ],
+  },
+  {
+    prompt:
+      "How often do you start a task, forget you started it, and find it half-finished later?",
+    options: [
+      "Rarely, if ever",
+      "Occasionally, under real pressure",
+      "Often enough that I expect it",
+      "Constantly - it's closer to my default mode",
+    ],
+  },
+  {
+    prompt: "When you try to hold a single thought for more than a minute, it:",
+    options: [
+      "Stays intact, developing as you think it through",
+      "Mostly stays, with minor drift",
+      "Gets interrupted by unrelated thoughts arriving uninvited",
+      "Dissolves almost immediately into something else",
+    ],
+  },
+  {
+    prompt:
+      "If you had to describe your attention as a physical space, it would be:",
+    options: [
+      "A quiet room with one thing in it",
+      "A room with a few things, tidy enough",
+      "A room with several things going at once, some volume",
+      "A room with every screen on, all channels playing at once",
+    ],
+  },
+  {
+    prompt: "When several things compete for your attention at once, you:",
+    options: [
+      "Consciously choose one and let the rest wait",
+      "Handle them in quick succession, mostly in order",
+      "Feel scattered across all of them at once",
+      "Freeze, or default to whichever is loudest",
+    ],
+  },
+  {
+    prompt:
+      "If you saw an honest report of your screen time, you'd expect it to:",
+    options: [
+      "Roughly match what you'd guess",
+      "Be a bit higher than you'd guess",
+      "Be uncomfortably higher than you'd guess",
+      "Be a number you'd rather not know",
+    ],
+  },
+  {
+    prompt: "Reading something long-form without checking your phone:",
+    options: [
+      "Happens easily, regularly",
+      "Happens, with occasional pulls away",
+      "Is difficult; you drift often",
+      "Rarely happens uninterrupted at all",
+    ],
+  },
+  {
+    prompt:
+      "The last time you had a genuinely uninterrupted hour of focus was:",
+    options: [
+      "Recently - it's fairly normal for you",
+      "Within the last week or two",
+      "Hard to place; it's been a while",
+      "You're not sure you remember what that feels like",
+    ],
+  },
+];
+
+const tiers = [
+  {
+    min: 13,
+    max: 22,
+    name: "Single-Threaded",
+    paragraph:
+      "Your attention still moves the way attention is meant to - toward one thing, for as long as that thing needs. This is increasingly rare, and worth protecting deliberately. Notice what conditions make this possible for you, and guard them.",
+  },
+  {
+    min: 23,
+    max: 32,
+    name: "Mostly Intact, Occasionally Split",
+    paragraph:
+      "You can still hold a single thread, but the pull toward fragmentation is there at the edges. Your baseline hasn't shifted yet. The work now is prevention - noticing the moments attention starts to split, and choosing not to follow it.",
+  },
+  {
+    min: 33,
+    max: 42,
+    name: "Habitually Fragmented",
+    paragraph:
+      "Switching has become your default mode, even when it isn't required by the task. This isn't a character flaw - it's a trained response to an environment built to interrupt you. The work is rebuilding tolerance for single-tasking in small, deliberate doses.",
+  },
+  {
+    min: 43,
+    max: 52,
+    name: "Fragmented Beyond Recall",
+    paragraph:
+      "Your attention rarely settles anywhere long enough to complete a full thought uninterrupted. This is a trained state, not a fixed one - but reversing it will take sustained, unglamorous practice: single tasks, done slowly, without permission to switch.",
+  },
+];
+---
+
+<BaseLayout
+  title="The Attention Audit - Valhouette Scribe"
+  description="13 questions on where your focus actually lives. A tiered result describing your current attention pattern."
+>
+  <div class="quiz-layout">
+    <div class="quiz-layout__main">
+      <section class="quiz-wrap">
+        <div class="container container--content">
+          <div class="card" id="quiz-card">
+            <header class="quiz-header">
+              <p class="quiz-eyebrow">Quiz</p>
+              <h1 class="quiz-title">The Attention Audit</h1>
+              <p class="quiz-intro">
+                Thirteen questions on where your attention actually goes - not
+                where you intend it to go.
+              </p>
+            </header>
+            <div class="progress-bar" aria-hidden="true">
+              <div class="progress-bar__fill" id="progress"></div>
+            </div>
+            <p class="progress-label" id="progress-label">Question 1 of 13</p>
+            <div id="quiz-body">
+              <div class="question-block" id="question-block">
+                <p class="question-text" id="question-text"></p>
+                <div class="options" id="options"></div>
+                <button class="btn-primary" id="next-btn" hidden>Next</button>
+              </div>
+              <div class="result-block hidden" id="result-block">
+                <p class="result-eyebrow">Your result</p>
+                <h2 class="result-name" id="result-name"></h2>
+                <p class="result-para" id="result-para"></p>
+                <p class="result-private">
+                  This result is private to your device. Nothing was transmitted
+                  or stored.
+                </p>
+                <div class="result-actions">
+                  <a class="result-return" href="/quizzes/">← All Quizzes</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <aside class="quiz-layout__sidebar">
+      <nav class="quiz-nav" aria-label="Other quizzes">
+        <p class="quiz-nav__label">Other Quizzes</p>
+        <div class="quiz-nav__grid">
+          <a class="quiz-nav__card" href="/quizzes/calibration-index">
+            <span class="quiz-nav__title">The Calibration Index</span>
+            <span class="quiz-nav__meta">13 questions · calibration</span>
+          </a>
+          <a class="quiz-nav__card" href="/quizzes/borrowed-self-inventory">
+            <span class="quiz-nav__title">The Borrowed Self Inventory</span>
+            <span class="quiz-nav__meta">13 questions · identity</span>
+          </a>
+          <a class="quiz-nav__card" href="/quizzes/solitude-tolerance-test">
+            <span class="quiz-nav__title">The Solitude Tolerance Test</span>
+            <span class="quiz-nav__meta">13 questions · solitude</span>
+          </a>
+        </div>
+        <a class="quiz-nav__all" href="/quizzes/">View all quizzes</a>
+      </nav>
+    </aside>
+  </div>
+</BaseLayout>
+
+<script src="/js/quizzes/attention-audit.js" defer></script>
+
+<style is:global>
+  .quiz-wrap {
+    padding-block: clamp(4rem, 8vw, 7rem);
+  }
+  .quiz-header {
+    margin-bottom: 2.5rem;
+  }
+  .quiz-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .quiz-title {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+  }
+  .quiz-intro {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 56ch;
+  }
+  .progress-bar {
+    height: 2px;
+    background: var(--border);
+    margin-bottom: 0.5rem;
+  }
+  .progress-bar__fill {
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.3s ease;
+    width: 0%;
+  }
+  .progress-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2rem;
+  }
+  .question-text {
+    font-family: var(--font-serif);
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    color: var(--heading);
+    line-height: 1.4;
+    margin-bottom: 1.75rem;
+  }
+  .options {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .option {
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--body);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    cursor: pointer;
+    transition:
+      border-color 0.2s ease,
+      background 0.2s ease;
+  }
+  .option:hover {
+    border-color: var(--border-hover);
+    background: rgba(254, 252, 232, 0.04);
+  }
+  .option.selected {
+    border-color: var(--accent);
+    background: rgba(181, 169, 142, 0.08);
+    color: var(--heading);
+  }
+  .hidden {
+    display: none;
+  }
+  .result-block {
+    padding-top: 1rem;
+  }
+  .result-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .result-name {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    margin-bottom: 1.25rem;
+  }
+  .result-para {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.85;
+    max-width: 56ch;
+    margin-bottom: 1.5rem;
+  }
+  .result-private {
+    font-size: 0.8rem;
+    color: var(--muted);
+    opacity: 0.6;
+    margin-bottom: 2rem;
+  }
+  .result-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .result-return {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .quiz-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 2.5rem;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 2rem 2rem 4rem;
+    align-items: start;
+  }
+
+  .quiz-layout__main {
+    min-width: 0;
+  }
+
+  .quiz-layout__sidebar {
+    position: sticky;
+    top: 2rem;
+  }
+
+  .quiz-nav {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .quiz-nav__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .quiz-nav__card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    background-color: #243b3b;
+    border: 1px solid rgba(255, 254, 226, 0.08);
+    border-radius: 2px;
+    padding: 1.1rem 1.25rem;
+    text-decoration: none;
+    color: inherit;
+    transition:
+      border-color 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .quiz-nav__card:hover {
+    border-color: rgba(255, 254, 226, 0.25);
+    transform: translateY(-1px);
+  }
+
+  .quiz-nav__label {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #9ca3af;
+    margin: 0 0 1.25rem;
+  }
+
+  .quiz-nav__title {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 1.05rem;
+    color: #fefce8;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .quiz-nav__meta {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #9ca3af;
+  }
+
+  .quiz-nav__all {
+    display: block;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    color: #9ca3af;
+    text-decoration: none;
+    margin-top: 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .quiz-nav__all:hover {
+    color: #fefce8;
+  }
+
+  @media (max-width: 768px) {
+    .quiz-layout {
+      grid-template-columns: 1fr;
+      padding: 1.5rem 1.25rem 3rem;
+      gap: 2rem;
+    }
+
+    .quiz-layout__sidebar {
+      position: static;
+    }
+  }
+</style>

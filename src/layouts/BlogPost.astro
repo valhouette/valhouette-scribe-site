@@ -1,0 +1,178 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  publishDate: Date;
+  updatedDate?: Date;
+  ogImage?: string;
+  nextPost?: { id: string; data: { title: string } };
+}
+
+const { title, description, publishDate, updatedDate, ogImage, nextPost } = Astro.props;
+
+const siteUrl = "https://valhouettescribe.com";
+
+function fmt(d: Date): string {
+  return d.toLocaleDateString("en-GB", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  ogType="article"
+  publishDate={publishDate.toISOString()}
+  ogImage={ogImage ? `${siteUrl}${ogImage}` : undefined}
+>
+  <article class="post">
+    <div class="container container--content">
+      <header class="post__header">
+        <div class="post__meta">
+          <time datetime={publishDate.toISOString()} class="post__date">
+            {fmt(publishDate)}
+          </time>
+          {
+            updatedDate && (
+              <span class="post__updated">
+                Updated{" "}
+                <time datetime={updatedDate.toISOString()}>
+                  {fmt(updatedDate)}
+                </time>
+              </span>
+            )
+          }
+        </div>
+
+        <h1 class="post__title">{title}</h1>
+        <p class="post__desc">{description}</p>
+        <hr class="post__rule" />
+      </header>
+
+      <div class="post__body prose">
+        <slot />
+      </div>
+
+      <footer class="post__footer">
+        <hr class="post__rule" />
+        <div class="post__footer-links">
+          <a href="/blog/" class="text-link">&larr; All Essays</a>
+          {nextPost && (
+            <a
+              href={`/blog/${nextPost.id}/`}
+              class="text-link"
+              rel="next"
+              aria-label={`Read next essay: ${nextPost.data.title}`}
+            >
+              Read Next &rarr;
+            </a>
+          )}
+        </div>
+      </footer>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .post {
+    padding-block: clamp(3rem, 8vw, 5.5rem);
+  }
+
+  .post__header {
+    margin-bottom: 2.5rem;
+  }
+
+  .post__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .post__date,
+  .post__updated {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .post__updated {
+    color: var(--accent);
+  }
+
+  .post__title {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.12;
+    margin-bottom: 1.25rem;
+  }
+
+  .post__desc {
+    font-size: 1.125rem;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  .post__rule {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2rem 0;
+  }
+
+  /* Prose */
+  .prose :global(h2) {
+    margin-top: 3rem;
+    margin-bottom: 1.1rem;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+  }
+  .prose :global(h3) {
+    margin-top: 2.25rem;
+    margin-bottom: 0.9rem;
+  }
+  .prose :global(p) {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    margin-bottom: 1.75rem;
+  }
+  .prose :global(a) {
+    border-bottom: 1px solid var(--border-hover);
+    padding-bottom: 1px;
+    color: var(--accent-warm);
+  }
+  .prose :global(a:hover) {
+    border-bottom-color: var(--accent-warm);
+    color: var(--heading);
+  }
+  .prose :global(.divider) {
+    display: block;
+    text-align: center;
+    color: var(--accent);
+    font-size: 1.1rem;
+    margin: 2.5rem 0;
+    letter-spacing: 0.1em;
+    user-select: none;
+  }
+
+  .post__footer {
+    margin-top: 1rem;
+  }
+
+  .post__footer-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .post__footer-links a {
+    white-space: nowrap;
+  }
+</style>

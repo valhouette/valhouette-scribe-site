@@ -1,0 +1,21 @@
+{
+  "name": "Valhouette Scribe",
+  "short_name": "Scribe",
+  "description": "Writing and resources for digitally saturated adults who sense their inner life has become crowded, filtered, or externally shaped.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#1a2e2e",
+  "background_color": "#1a2e2e",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["lifestyle", "blog"],
+  "screenshots": []
+}

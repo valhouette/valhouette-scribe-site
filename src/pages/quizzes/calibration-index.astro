@@ -1,0 +1,455 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const questions = [
+  {
+    prompt: "When you wake up, the first thing you reach for is:",
+    options: [
+      "Nothing - you lie still for a while",
+      "A book or something physical",
+      "Your phone, after a few minutes",
+      "Your phone, before you've fully woken up",
+    ],
+  },
+  {
+    prompt:
+      "A quiet evening with no plans, no screens, and no one around feels:",
+    options: [
+      "Restorative - something you'd choose",
+      "Fine, if it happens",
+      "Slightly uncomfortable - you'd reach for something eventually",
+      "Like something to escape from",
+    ],
+  },
+  {
+    prompt: "When you try to read something long-form, your attention:",
+    options: [
+      "Holds for the full piece without much effort",
+      "Holds mostly, with occasional drifting",
+      "Fragments regularly - you reread paragraphs often",
+      "Rarely makes it through without opening something else",
+    ],
+  },
+  {
+    prompt: "How often do you check your phone without a specific reason?",
+    options: [
+      "Rarely - usually with intent",
+      "A few times a day, out of habit",
+      "Frequently - it's become automatic",
+      "Constantly - it's closer to a reflex than a choice",
+    ],
+  },
+  {
+    prompt: "When you sit somewhere quiet and do nothing, the feeling is:",
+    options: [
+      "Comfortable - almost immediately",
+      "Fine after a minute or two",
+      "Restless - there's a pull toward doing something",
+      "Actively uncomfortable - you rarely let it go on long",
+    ],
+  },
+  {
+    prompt: "Your focus during a single task (writing, reading, working) is:",
+    options: [
+      "Sustained - you finish things before switching",
+      "Mostly sustained, with occasional interruptions",
+      "Frequently interrupted, often by yourself",
+      "Rarely sustained - you're usually running several things",
+    ],
+  },
+  {
+    prompt: "After a long session on your phone or social media, you feel:",
+    options: [
+      "The same as before - it doesn't affect you much",
+      "Slightly flat, but it passes quickly",
+      "Noticeably flat or restless",
+      "Drained - and still reaching for more anyway",
+    ],
+  },
+  {
+    prompt:
+      "The last time you spent several hours away from all screens, it felt:",
+    options: [
+      "Natural - you didn't think about it",
+      "Fine, though you noticed the absence",
+      "Difficult - you were aware of it the whole time",
+      "Like something you actively avoid",
+    ],
+  },
+  {
+    prompt: "When a conversation gets complex or slow, you:",
+    options: [
+      "Stay with it - the pace doesn't bother you",
+      "Stay with it, though you notice some impatience",
+      "Find yourself mentally reaching for something else",
+      "Regularly check your phone or look for an exit",
+    ],
+  },
+  {
+    prompt:
+      "The speed at which you consume content - articles, videos, posts - has:",
+    options: [
+      "Stayed roughly the same over the past few years",
+      "Increased a little",
+      "Increased noticeably",
+      "Accelerated to the point where slower content feels unwatchable",
+    ],
+  },
+  {
+    prompt: "When you have a problem to think through, your first move is:",
+    options: [
+      "To sit with it - let your own mind work on it",
+      "To think about it first, then search if needed",
+      "To search immediately",
+      "To ask an AI or look for the answer before you've really tried",
+    ],
+  },
+  {
+    prompt: "Your experience of boredom:",
+    options: [
+      "Is occasional and tolerable",
+      "Comes more often than it used to, but you can sit with it",
+      "Arrives quickly and feels urgent to resolve",
+      "Is something you've almost entirely engineered out of your life",
+    ],
+  },
+  {
+    prompt:
+      "If someone asked you to describe your current inner life - your actual thoughts, not your opinions on things - you would:",
+    options: [
+      "Find it easy - you have a clear sense of it",
+      "Manage it, with some effort",
+      "Struggle - it's harder to access than it used to be",
+      "Not know where to start - it feels distant or obscured",
+    ],
+  },
+];
+
+const tiers = [
+  {
+    min: 13,
+    max: 22,
+    name: "Recalibrated",
+    paragraph:
+      "Your baseline is closer to its original frequency than most. The network hasn't significantly altered your relationship with stillness, attention, or your own signal. This is worth protecting - not through rigidity, but through continued awareness of what preserves it.",
+  },
+  {
+    min: 23,
+    max: 32,
+    name: "Drifting",
+    paragraph:
+      "Your baseline has shifted, but not so far that the original signal is hard to locate. You can still access stillness and sustained attention - they just require more deliberate effort than they once did. The drift is reversible at this stage without significant disruption.",
+  },
+  {
+    min: 33,
+    max: 42,
+    name: "Saturated",
+    paragraph:
+      "Your nervous system is running significantly above its natural frequency. Ordinary unmediated experience - silence, slow conversation, a task without switching - now registers as flat or uncomfortable. Recalibration is possible but will feel counterintuitive before it feels natural.",
+  },
+  {
+    min: 43,
+    max: 52,
+    name: "Deep Saturation",
+    paragraph:
+      "Your baseline has shifted far enough that the original signal is genuinely difficult to locate. The quiet doesn't feel like relief - it feels like deprivation. This is the most common result, and it is not permanent. But recalibration at this level requires sustained, deliberate input reduction - not a weekend offline, but a gradual, consistent lowering of the stimulus floor.",
+  },
+];
+---
+
+<BaseLayout
+  title="The Calibration Index | Valhouette Scribe"
+  description="13 questions on attention, stimulation baseline, and recalibration capacity. A tiered result."
+>
+  <div class="quiz-layout">
+    <div class="quiz-layout__main">
+      <section class="quiz-wrap">
+        <div class="container container--content">
+          <div class="card" id="quiz-card">
+            <header class="quiz-header">
+              <p class="quiz-eyebrow">Quiz</p>
+              <h1 class="quiz-title">The Calibration Index</h1>
+              <p class="quiz-intro">
+                The flagship diagnostic. Thirteen questions on where your
+                baseline currently sits and what that means for your capacity to
+                be present.
+              </p>
+            </header>
+            <div class="progress-bar" aria-hidden="true">
+              <div class="progress-bar__fill" id="progress"></div>
+            </div>
+            <p class="progress-label" id="progress-label">Question 1 of 13</p>
+            <div id="quiz-body">
+              <div class="question-block" id="question-block">
+                <p class="question-text" id="question-text"></p>
+                <div class="options" id="options"></div>
+                <button class="btn-primary" id="next-btn" hidden>Next</button>
+              </div>
+              <div class="result-block hidden" id="result-block">
+                <p class="result-eyebrow">Your result</p>
+                <h2 class="result-name" id="result-name"></h2>
+                <p class="result-para" id="result-para"></p>
+                <p class="result-private">
+                  This result is private to your device. Nothing was transmitted
+                  or stored.
+                </p>
+                <div class="result-actions">
+                  <a class="result-return" href="/quizzes/">← All Quizzes</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <aside class="quiz-layout__sidebar">
+      <nav class="quiz-nav" aria-label="Other quizzes">
+        <p class="quiz-nav__label">Other Quizzes</p>
+        <div class="quiz-nav__grid">
+          <a class="quiz-nav__card" href="/quizzes/attention-audit">
+            <span class="quiz-nav__title">The Attention Audit</span>
+            <span class="quiz-nav__meta">13 questions · attention</span>
+          </a>
+          <a class="quiz-nav__card" href="/quizzes/borrowed-self-inventory">
+            <span class="quiz-nav__title">The Borrowed Self Inventory</span>
+            <span class="quiz-nav__meta">13 questions · identity</span>
+          </a>
+          <a class="quiz-nav__card" href="/quizzes/solitude-tolerance-test">
+            <span class="quiz-nav__title">The Solitude Tolerance Test</span>
+            <span class="quiz-nav__meta">13 questions · solitude</span>
+          </a>
+        </div>
+        <a class="quiz-nav__all" href="/quizzes/">View all quizzes</a>
+      </nav>
+    </aside>
+  </div>
+</BaseLayout>
+
+<script src="/js/quizzes/calibration-index.js" defer></script>
+
+<style is:global>
+  .quiz-wrap {
+    padding-block: clamp(4rem, 8vw, 7rem);
+  }
+  .quiz-header {
+    margin-bottom: 2.5rem;
+  }
+  .quiz-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .quiz-title {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+  }
+  .quiz-intro {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 56ch;
+  }
+  .progress-bar {
+    height: 2px;
+    background: var(--border);
+    margin-bottom: 0.5rem;
+  }
+  .progress-bar__fill {
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.3s ease;
+    width: 0%;
+  }
+  .progress-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2rem;
+  }
+  .question-text {
+    font-family: var(--font-serif);
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    color: var(--heading);
+    line-height: 1.4;
+    margin-bottom: 1.75rem;
+  }
+  .options {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .option {
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--body);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    cursor: pointer;
+    transition:
+      border-color 0.2s ease,
+      background 0.2s ease;
+  }
+  .option:hover {
+    border-color: var(--border-hover);
+    background: rgba(254, 252, 232, 0.04);
+  }
+  .option.selected {
+    border-color: var(--accent);
+    background: rgba(181, 169, 142, 0.08);
+    color: var(--heading);
+  }
+  .hidden {
+    display: none;
+  }
+  .result-block {
+    padding-top: 1rem;
+  }
+  .result-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .result-name {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    margin-bottom: 1.25rem;
+  }
+  .result-para {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.85;
+    max-width: 56ch;
+    margin-bottom: 1.5rem;
+  }
+  .result-private {
+    font-size: 0.8rem;
+    color: var(--muted);
+    opacity: 0.6;
+    margin-bottom: 2rem;
+  }
+  .result-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .result-return {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .quiz-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 2.5rem;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 2rem 2rem 4rem;
+    align-items: start;
+  }
+
+  .quiz-layout__main {
+    min-width: 0;
+  }
+
+  .quiz-layout__sidebar {
+    position: sticky;
+    top: 2rem;
+  }
+
+  .quiz-nav {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .quiz-nav__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .quiz-nav__card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    background-color: #243b3b;
+    border: 1px solid rgba(255, 254, 226, 0.08);
+    border-radius: 2px;
+    padding: 1.1rem 1.25rem;
+    text-decoration: none;
+    color: inherit;
+    transition:
+      border-color 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .quiz-nav__card:hover {
+    border-color: rgba(255, 254, 226, 0.25);
+    transform: translateY(-1px);
+  }
+
+  .quiz-nav__label {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #9ca3af;
+    margin: 0 0 1.25rem;
+  }
+
+  .quiz-nav__title {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 1.05rem;
+    color: #fefce8;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .quiz-nav__meta {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #9ca3af;
+  }
+
+  .quiz-nav__all {
+    display: block;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    color: #9ca3af;
+    text-decoration: none;
+    margin-top: 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .quiz-nav__all:hover {
+    color: #fefce8;
+  }
+
+  @media (max-width: 768px) {
+    .quiz-layout {
+      grid-template-columns: 1fr;
+      padding: 1.5rem 1.25rem 3rem;
+      gap: 2rem;
+    }
+
+    .quiz-layout__sidebar {
+      position: static;
+    }
+  }
+</style>
