@@ -1,7 +1,7 @@
 ---
 title: "The Life Happening at a Slight Remove"
 description: "You are present. You are functional. You are doing all the things a life contains. And yet there is a half-step of distance between you and all of it."
-publishDate: 2024-06-08
+publishDate: 2026-06-08
 draft: false
 ---
 

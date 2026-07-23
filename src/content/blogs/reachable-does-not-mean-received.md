@@ -1,7 +1,7 @@
 ---
 title: "Reachable Does Not Mean Received"
 description: "You can be in contact with everyone you know and still feel like nobody actually caught what you were carrying."
-publishDate: 2024-07-04
+publishDate: 2026-07-04
 draft: false
 ---
 

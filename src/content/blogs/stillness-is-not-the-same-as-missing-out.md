@@ -1,7 +1,7 @@
 ---
 title: "Stillness Is Not the Same as Missing Out"
 description: "A quiet room isn't empty. It just feels that way once your baseline has drifted somewhere louder."
-publishDate: 2024-08-18
+publishDate: 2026-05-18
 draft: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Why Ordinary Moments Stopped Feeling Like Enough"
 description: "A sunset that should move you passes without much trace. That's not you failing to appreciate life, it's a system protecting itself."
-publishDate: 2024-07-24
+publishDate: 2026-04-02
 draft: false
 ---
 

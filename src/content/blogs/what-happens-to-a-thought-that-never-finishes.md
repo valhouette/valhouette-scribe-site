@@ -1,7 +1,7 @@
 ---
 title: "What Happens to a Thought That Never Finishes"
 description: "Opinions arrive before the question has fully opened. A fast mind can be impressive and still be thin."
-publishDate: 2024-08-13
+publishDate: 2026-03-12
 draft: false
 ---
 

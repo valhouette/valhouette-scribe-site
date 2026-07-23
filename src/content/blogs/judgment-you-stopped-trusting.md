@@ -1,7 +1,7 @@
 ---
 title: "When Did You Stop Trusting Your Own Judgment"
 description: "You used to know what you thought. Before you checked what everyone else thought first. Something in that ordering changed, and most people cannot identify when."
-publishDate: 2026-05-04
+publishDate: 2026-05-02
 draft: false
 ---
 

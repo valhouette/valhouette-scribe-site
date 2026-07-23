@@ -1,7 +1,7 @@
 ---
 title: "Informed Is Not the Same as Clear"
 description: "You can be processing more information than any generation in history and still feel strangely unmoored. Here's one reason why."
-publishDate: 2024-08-08
+publishDate: 2026-03-02
 draft: false
 ---
 

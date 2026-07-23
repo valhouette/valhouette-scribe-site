@@ -1,7 +1,7 @@
 ---
 title: "Busy Is Not the Same as Bound Somewhere"
 description: "A person can be productive all day and still not be moving toward anything that feels like their own life."
-publishDate: 2024-09-07
+publishDate: 2026-07-07
 draft: false
 ---
 

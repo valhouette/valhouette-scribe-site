@@ -1,7 +1,7 @@
 ---
 title: "Living Inside the Interruption"
 description: "At some point interruption stops being an event and starts being a place you live. Here's how that shift happens, quietly."
-publishDate: 2024-07-29
+publishDate: 2026-06-29
 draft: false
 ---
 

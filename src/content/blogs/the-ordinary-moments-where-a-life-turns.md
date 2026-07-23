@@ -1,7 +1,7 @@
 ---
 title: "The Ordinary Moments Where a Life Turns"
 description: "It rarely looks like a dramatic decision. More often it looks like fatigue, or a sudden inability to keep pretending the old rhythm still fits."
-publishDate: 2024-09-22
+publishDate: 2026-04-22
 draft: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "What Returns When the Noise Goes Quiet"
 description: "Not relief. Not clarity arriving like a sunrise. Something smaller, stranger, and more useful than either of those."
-publishDate: 2024-05-25
+publishDate: 2026-05-25
 draft: false
 ---
 

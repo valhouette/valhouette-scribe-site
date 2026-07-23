@@ -1,7 +1,7 @@
 ---
 title: "When Your Baseline Moves Without You"
 description: "The system does not break. It adjusts. And in adjusting, it loses its calibration with the life you are actually living."
-publishDate: 2026-03-29
+publishDate: 2026-03-28
 draft: false
 ---
 

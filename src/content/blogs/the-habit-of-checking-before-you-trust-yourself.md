@@ -1,7 +1,7 @@
 ---
 title: "The Habit of Checking Before You Trust Yourself"
 description: "You have a position. But before you say it out loud, you check. That small pause is worth examining."
-publishDate: 2024-08-23
+publishDate: 2026-05-23
 draft: false
 ---
 

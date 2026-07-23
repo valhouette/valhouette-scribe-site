@@ -1,7 +1,7 @@
 ---
 title: "When Your Inner Life Moves Somewhere Else"
 description: "You can be fluent in the language of your own feelings and still feel oddly distant from what you actually need."
-publishDate: 2024-07-09
+publishDate: 2026-04-14
 draft: false
 ---
 

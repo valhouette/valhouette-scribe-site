@@ -1,7 +1,7 @@
 ---
 title: "The Purpose That Went Quiet"
 description: "Nothing was removed. Nothing broke. Something simply stopped being heard. The signal was always there. The interference grew louder."
-publishDate: 2024-05-11
+publishDate: 2026-05-11
 draft: false
 ---
 

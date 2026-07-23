@@ -1,7 +1,7 @@
 ---
 title: "What Looks Like Failure Might Be Successful Survival"
 description: "What looks like passivity might just be a system conserving itself. Adaptation is not the same thing as brokenness."
-publishDate: 2024-09-12
+publishDate: 2026-03-10
 draft: false
 ---
 

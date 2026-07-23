@@ -1,7 +1,7 @@
 ---
 title: "What the Tools Gave, and What They Took in Return"
 description: "Nobody made a bad trade knowingly. The tools arrived offering something real. The cost was printed in a smaller font, and it was not visible from the front of the box."
-publishDate: 2024-05-18
+publishDate: 2026-05-18
 draft: false
 ---
 

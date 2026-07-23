@@ -1,7 +1,7 @@
 ---
 title: "A Quieter Way Back, One Delay at a Time"
 description: "The way out of a system built on speed can't be another performance inside the same logic. It has to be slower and less visible than that."
-publishDate: 2024-09-27
+publishDate: 2026-02-27
 draft: false
 ---
 

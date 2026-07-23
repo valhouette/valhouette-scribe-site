@@ -1,7 +1,7 @@
 ---
 title: "Inherited Weather Still Shapes the Body"
 description: "Some of what feels like your own character might actually be residue, patterns inherited from an environment that normalized a lot of strain."
-publishDate: 2024-09-17
+publishDate: 2026-04-17
 draft: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Knowing the Step and Still Not Taking It"
 description: "You can be capable, perceptive, and clear about what needs to happen next, and still not move until something outside you says it's okay."
-publishDate: 2024-08-28
+publishDate: 2026-06-16
 draft: false
 ---
 

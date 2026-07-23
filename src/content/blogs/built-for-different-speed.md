@@ -1,7 +1,7 @@
 ---
 title: "You Were Built for a Different Speed"
 description: "Your nervous system is extraordinary hardware. It was simply designed for a world with different inputs. The mismatch is not a failure of you. It is a failure of fit."
-publishDate: 2024-06-01
+publishDate: 2026-06-12
 draft: false
 ---
 

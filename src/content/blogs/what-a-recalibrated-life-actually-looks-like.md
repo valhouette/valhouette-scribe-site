@@ -1,7 +1,7 @@
 ---
 title: "What a Recalibrated Life Actually Looks Like"
 description: "It's not a simpler life or a purer one. It's still full, still demanding. What changes is what the baseline is measuring against."
-publishDate: 2024-10-02
+publishDate: 2026-07-02
 draft: false
 ---
 

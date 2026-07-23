@@ -1,7 +1,7 @@
 ---
 title: "Wanting That Cannot Survive an Empty Room"
 description: "Some ambitions feel personal but were never really examined. Here's a simple test for telling the difference."
-publishDate: 2024-09-02
+publishDate: 2026-02-14
 draft: false
 ---
 

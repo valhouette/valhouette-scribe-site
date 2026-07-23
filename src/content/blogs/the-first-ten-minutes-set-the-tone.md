@@ -1,7 +1,7 @@
 ---
 title: "The First Ten Minutes Set the Tone"
 description: "You reach for your phone before you're even fully awake. That reflex is worth a second look."
-publishDate: 2024-07-14
+publishDate: 2026-05-14
 draft: false
 ---
 

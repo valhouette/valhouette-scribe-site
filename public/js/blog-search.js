@@ -1,6 +1,7 @@
 (function () {
   const form = document.getElementById("blog-search-form");
   const input = document.getElementById("blog-search");
+  const clearButton = document.getElementById("blog-search-clear");
   const items = document.querySelectorAll(".post-item");
 
   function filterPosts(value) {
@@ -16,9 +17,26 @@
     });
   }
 
+  function updateClearButton() {
+    if (!clearButton || !input) return;
+    const hasValue = input.value.trim().length > 0;
+    clearButton.classList.toggle("visible", hasValue);
+  }
+
   if (input) {
     input.addEventListener("input", function () {
       filterPosts(this.value);
+      updateClearButton();
+    });
+    updateClearButton();
+  }
+
+  if (clearButton && input) {
+    clearButton.addEventListener("click", function () {
+      input.value = "";
+      updateClearButton();
+      filterPosts("");
+      input.focus();
     });
   }
 

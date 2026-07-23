@@ -1,7 +1,7 @@
 ---
 title: "The Version of You Before the Signal"
 description: "Your life looks fine from the outside. The job continues, the messages get answered. So why does it feel thin underneath?"
-publishDate: 2024-06-24
+publishDate: 2026-02-24
 draft: false
 ---
 

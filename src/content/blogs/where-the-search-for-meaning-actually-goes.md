@@ -1,7 +1,7 @@
 ---
 title: "Where the Search for Meaning Actually Goes"
 description: "You used to look for meaning in silence. Now you look for it in a search bar. That's not a loss of faith, it's a rerouting."
-publishDate: 2024-06-29
+publishDate: 2026-02-29
 draft: false
 ---
 

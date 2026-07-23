@@ -1,7 +1,7 @@
 ---
 title: "Meeting a Moment Before Deciding What It Means"
 description: "You stand in a beautiful place and think about how to frame it. That small habit changes more than the photo."
-publishDate: 2024-08-03
+publishDate: 2026-06-03
 draft: false
 ---
 

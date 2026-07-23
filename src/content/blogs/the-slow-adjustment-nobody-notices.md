@@ -1,7 +1,7 @@
 ---
 title: "The Slow Adjustment Nobody Notices"
 description: "A quiet Tuesday afternoon, nothing wrong, and still almost nothing registers. That flatness has a shape worth understanding."
-publishDate: 2024-07-19
+publishDate: 2026-06-20
 draft: false
 ---
 
