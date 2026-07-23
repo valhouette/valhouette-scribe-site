@@ -5,7 +5,7 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
   # Content Security Policy: tuned for this static site
   # Inline scripts have been moved to external files in /js/ to allow a stricter policy for scripts.
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://www.googletagservices.com https://adservice.google.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; connect-src 'self' https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Resource-Policy: same-site
@@ -35,6 +35,12 @@
 /manifest.json
   Cache-Control: public, max-age=604800
   Content-Type: application/manifest+json
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=86400
+
+/apple-touch-icon-precomposed.png
+  Cache-Control: public, max-age=86400
 
 /rss.xml
   Cache-Control: public, max-age=3600
