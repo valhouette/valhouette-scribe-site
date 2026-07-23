@@ -112,8 +112,14 @@ const breadcrumbSchema =
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7535752269320448"
-     crossorigin="anonymous"></script>
+    <meta
+      name="google-site-verification"
+      content="pyApRC7J9IzbHF0V-0FeEY3SpWKctmG39Hr_6DunTmw"
+    />
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7535752269320448"
+      crossorigin="anonymous"></script>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="description" content={description} />
     <meta
@@ -184,19 +190,26 @@ const breadcrumbSchema =
         <meta property="article:modified_time" content={modifiedDate} />
       )
     }
-    <script type="application/ld+json">
-      {JSON.stringify(websiteSchema)}
-    </script>
-    {articleSchema && (
-      <script type="application/ld+json">
-        {JSON.stringify(articleSchema)}
-      </script>
-    )}
-    {breadcrumbSchema && (
-      <script type="application/ld+json">
-        {JSON.stringify(breadcrumbSchema)}
-      </script>
-    )}
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(websiteSchema)}
+    />
+    {
+      articleSchema && (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify(articleSchema)}
+        />
+      )
+    }
+    {
+      breadcrumbSchema && (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify(breadcrumbSchema)}
+        />
+      )
+    }
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
