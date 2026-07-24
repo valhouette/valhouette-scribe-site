@@ -1,0 +1,70 @@
+name: Submit URLs to IndexNow
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build site
+        run: npm run build
+
+      - name: Collect URLs from sitemap
+        id: urls
+        run: |
+          python3 - <<'EOF'
+          import re, json
+
+          with open('dist/sitemap-0.xml', 'r') as f:
+              content = f.read()
+
+          urls = re.findall(r'<loc>(.*?)</loc>', content)
+
+          with open('urls.json', 'w') as f:
+              json.dump(urls, f)
+
+          print(f"Found {len(urls)} URLs")
+          EOF
+
+      - name: Submit to IndexNow
+        run: |
+          python3 - <<'EOF'
+          import json
+          import urllib.request
+
+          with open('urls.json') as f:
+              urls = json.load(f)
+
+          payload = {
+              "host": "valhouettescribe.com",
+              "key": "08e5fc12822d4d1a946d1a80a7e184d5",
+              "keyLocation": "https://valhouettescribe.com/08e5fc12822d4d1a946d1a80a7e184d5.txt",
+              "urlList": urls
+          }
+
+          req = urllib.request.Request(
+              "https://api.indexnow.org/indexnow",
+              data=json.dumps(payload).encode("utf-8"),
+              headers={"Content-Type": "application/json; charset=utf-8"},
+              method="POST"
+          )
+
+          try:
+              with urllib.request.urlopen(req) as resp:
+                  print(f"IndexNow response: {resp.status}")
+          except urllib.error.HTTPError as e:
+              print(f"IndexNow response: {e.code} - {e.read().decode()}")
+          EOF
