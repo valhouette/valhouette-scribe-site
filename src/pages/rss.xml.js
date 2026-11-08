@@ -9,7 +9,7 @@ export async function GET(context) {
 
   return rss({
     title: 'Valhouette Scribe',
-    description: 'Blogs on technologized consciousness, attention saturation, and the recovery of depth in a hyper-connected world.',
+    description: 'Essays on the depth of presence in a hyperconnected world.',
     site: context.site,
     items: sorted.map(post => ({
       title: post.data.title,
