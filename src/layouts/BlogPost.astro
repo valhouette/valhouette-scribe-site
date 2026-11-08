@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import BookCTA from "../components/BookCTA.astro";
 
 interface Props {
   title: string;
@@ -10,7 +11,8 @@ interface Props {
   nextPost?: { id: string; data: { title: string } };
 }
 
-const { title, description, publishDate, updatedDate, ogImage, nextPost } = Astro.props;
+const { title, description, publishDate, updatedDate, ogImage, nextPost } =
+  Astro.props;
 
 const siteUrl = "https://valhouettescribe.com";
 
@@ -58,20 +60,24 @@ function fmt(d: Date): string {
         <slot />
       </div>
 
+      <BookCTA />
+
       <footer class="post__footer">
         <hr class="post__rule" />
         <div class="post__footer-links">
           <a href="/blog/" class="text-link">&larr; All Essays</a>
-          {nextPost && (
-            <a
-              href={`/blog/${nextPost.id}/`}
-              class="text-link"
-              rel="next"
-              aria-label={`Read next essay: ${nextPost.data.title}`}
-            >
-              Read Next &rarr;
-            </a>
-          )}
+          {
+            nextPost && (
+              <a
+                href={`/blog/${nextPost.id}/`}
+                class="text-link"
+                rel="next"
+                aria-label={`Read next essay: ${nextPost.data.title}`}
+              >
+                Read Next &rarr;
+              </a>
+            )
+          }
         </div>
       </footer>
     </div>

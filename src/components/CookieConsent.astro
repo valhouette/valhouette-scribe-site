@@ -1,0 +1,94 @@
+<div id="cookie-consent" class="cookie-consent" hidden>
+  <div class="cookie-consent__inner">
+    <div class="cookie-consent__copy">
+      <p class="cookie-consent__title">Privacy choices</p>
+      <p>
+        We use analytics only if you choose to enable it. Quizzes remain local
+        to your device, and no personal data is collected by Valhouette Scribe
+        without your consent.
+      </p>
+    </div>
+    <div class="cookie-consent__actions">
+      <button type="button" class="btn btn--small" data-cookie-choice="accepted">
+        Accept analytics
+      </button>
+      <button type="button" class="btn btn--ghost btn--small" data-cookie-choice="declined">
+        Decline
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cookie-consent {
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 50;
+    padding: 1rem;
+    background: rgba(17, 22, 20, 0.97);
+    border-top: 1px solid var(--border);
+    box-shadow: 0 -12px 32px rgba(0, 0, 0, 0.12);
+  }
+
+  .cookie-consent__inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .cookie-consent__copy {
+    flex: 1 1 28rem;
+    color: var(--body);
+  }
+
+  .cookie-consent__title {
+    margin: 0 0 0.35rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--heading);
+  }
+
+  .cookie-consent__copy p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .cookie-consent__actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .btn--small {
+    min-height: 2.75rem;
+    padding: 0.7rem 1rem;
+  }
+
+  .btn--ghost {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--heading);
+  }
+
+  @media (max-width: 560px) {
+    .cookie-consent__inner {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .cookie-consent__actions {
+      width: 100%;
+    }
+
+    .cookie-consent__actions .btn {
+      flex: 1 1 100%;
+    }
+  }
+</style>

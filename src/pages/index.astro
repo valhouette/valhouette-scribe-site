@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
+import BookCTA from "../components/BookCTA.astro";
 
 const allPosts = await getCollection("blogs", ({ data }) => !data.draft);
 const recent = allPosts
@@ -18,22 +19,30 @@ function fmt(d: Date): string {
 
 <BaseLayout
   title="Valhouette Scribe"
-  description="Writing and resources for digitally saturated adults who sense their inner life has become crowded, filtered, or externally shaped."
+  description="Essays, reflection, and practical tools for people who want more clarity, presence, and self-trust in a distracted world."
 >
   <!-- ── Hero ── -->
   <section class="hero">
     <div class="hero__glow" aria-hidden="true"></div>
     <div class="container container--content hero__inner">
-      <p class="hero__eyebrow">Welcome To</p>
+      <p class="hero__eyebrow">Writing for a quieter life</p>
       <h1 class="hero__title">Valhouette Scribe.</h1>
       <div class="divider" aria-hidden="true"></div>
-      <p class="hero__body">The depth of presence in a hyperconnected world</p>
+      <p class="hero__body">
+        Essays and tools for people noticing that attention, judgment, and
+        meaning have become crowded by the pace of modern life.
+      </p>
       <div class="hero__actions">
-        <a href="/blog/" class="btn-primary">Read the Essays</a>
-        <a href="/quizzes/" class="btn">Take a Quiz</a>
+        <a href="/books/the-hyperconnected-self/" class="btn-primary"
+          >Explore the Book</a
+        >
+        <a href="/blog/" class="btn">Read the Essays</a>
       </div>
     </div>
   </section>
+
+  <!-- ── The Book ── -->
+  <BookCTA variant="home" />
 
   <!-- ── Recent Writing ── -->
   {
@@ -77,9 +86,9 @@ function fmt(d: Date): string {
       <div class="divider" aria-hidden="true"></div>
       <h2 class="quiz-callout__title">Self-Reflective Quizzes</h2>
       <p class="quiz-callout__body">
-        The essays name the patterns. These quizzes help you map them in a
-        quieter way: private, local to your device, and designed to bring your
-        attention back to your own signals rather than to the feed.
+        The essays name the patterns. These quizzes help you map them with more
+        honesty and less noise: private, local to your device, and designed to
+        return attention to your own signals rather than the feed.
       </p>
       <a href="/quizzes/" class="btn">Take a Quiz</a>
       <div class="divider" aria-hidden="true"></div>

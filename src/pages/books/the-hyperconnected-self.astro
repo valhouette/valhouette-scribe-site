@@ -1,0 +1,64 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { BOOK, hasAmazonLink } from "../../data/book";
+
+const bookSchema = {
+  "@context": "https://schema.org",
+  "@type": "Book",
+  name: BOOK.title,
+  alternativeHeadline: BOOK.subtitle,
+  author: { "@type": "Person", name: BOOK.author },
+  inLanguage: "en-GB",
+  description: BOOK.blurb,
+  url: "https://valhouettescribe.com/books/the-hyperconnected-self/",
+  ...(hasAmazonLink ? { sameAs: BOOK.amazonUrl } : {}),
+};
+---
+<BaseLayout
+  title="The Hyperconnected Self | Valhouette Scribe"
+  description="A philosophical mapping of spirituality, consciousness, perception and behaviour inside a world that never stops transmitting. By Valhouette Scribe."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(bookSchema)} />
+  <section class="section">
+    <div class="container container--content book">
+      <p class="page-eyebrow">THE BOOK</p>
+      <h1 class="page-title">{BOOK.title}</h1>
+      <p class="book__sub">{BOOK.subtitle}</p>
+      <hr class="page-rule" />
+
+      {BOOK.cover && <img class="book__cover" src={BOOK.cover} alt={`Cover of ${BOOK.title}`} width="240" height="360" decoding="async" />}
+
+      <div class="book__body">
+        <p>There is a version of you that existed before the signal arrived.</p>
+        <p>From the outside, your life still appears to be working. The job continues. The messages still arrive. And yet something has become thin. Not broken. Thin.</p>
+        <p>This book does not assume you are damaged. It assumes you have been adapting, and it maps what that adaptation has cost: in how you search for meaning, how you perceive the world, how you judge, what you want, and what you believe your purpose is.</p>
+        <p class="book__hook">You are not broken. You are miscalibrated.</p>
+
+        <h2>Inside the book</h2>
+        <ul>
+          <li>The Outsourced Altar: where the search for meaning goes when it leaves you</li>
+          <li>The Saturation Filter: why ordinary life stops landing</li>
+          <li>Operational Drift: the baseline moving without notice</li>
+          <li>Feed-Sourced Ambitions: wanting that cannot survive an empty room</li>
+          <li>The Exit Protocol and the Recalibrated Life</li>
+        </ul>
+        <p class="book__note">Twenty-one chapters across five parts, with a glossary of the book's original terms. Available in {BOOK.formats}.</p>
+      </div>
+
+      <div class="book__actions">
+        {hasAmazonLink && <a href={BOOK.amazonUrl} class="btn-primary" rel="noopener noreferrer" target="_blank">Get it on Amazon</a>}
+        <a href="/blog/" class="btn">Read the essays</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+<style>
+  .book__sub { font-family: var(--font-serif); font-style: italic; color: var(--muted); font-size: 1.15rem; line-height: 1.6; }
+  .book__cover { display: block; margin: 0 auto 2rem; max-width: 240px; height: auto; }
+  .book__body p { margin-bottom: 1.25rem; line-height: 1.85; }
+  .book__body h2 { font-size: 1.4rem; margin: 2.25rem 0 1rem; }
+  .book__body ul { padding-left: 1.25rem; margin-bottom: 1.5rem; color: var(--body); line-height: 1.9; }
+  .book__hook { font-family: var(--font-serif); font-style: italic; font-size: 1.4rem; color: var(--accent-warm); }
+  .book__note { color: var(--muted); font-size: .9rem; }
+  .book__actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+</style>
