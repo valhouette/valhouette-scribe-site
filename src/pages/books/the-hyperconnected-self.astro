@@ -11,7 +11,7 @@ const bookSchema = {
   inLanguage: "en-GB",
   description: BOOK.blurb,
   url: "https://valhouettescribe.com/books/the-hyperconnected-self/",
-  ...(hasAmazonLink ? { sameAs: BOOK.amazonUrl } : {}),
+  ...(hasAmazonLink(BOOK) ? { sameAs: BOOK.amazonUrl } : {}),
 };
 ---
 <BaseLayout
@@ -46,9 +46,10 @@ const bookSchema = {
       </div>
 
       <div class="book__actions">
-        {hasAmazonLink && <a href={BOOK.amazonUrl} class="btn-primary" rel="noopener noreferrer" target="_blank">Get it on Amazon</a>}
+        {hasAmazonLink(BOOK) && <a href={BOOK.amazonUrl} class="btn-primary" rel="noopener noreferrer" target="_blank">Buy on Amazon</a>}
         <a href="/blog/" class="btn">Read the essays</a>
       </div>
+      <p class="book__note">Companion journal: <a href="/books/the-quiet-record/">The Quiet Record</a></p>
     </div>
   </section>
 </BaseLayout>

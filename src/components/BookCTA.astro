@@ -1,18 +1,19 @@
 ---
-import { BOOK, hasAmazonLink } from "../data/book";
+import { BOOK, hasAmazonLink, type Book } from "../data/book";
 interface Props {
   variant?: "post" | "home";
+  book?: Book;
 }
-const { variant = "post" } = Astro.props;
+const { variant = "post", book = BOOK } = Astro.props;
 ---
 
-<aside class={`book-cta book-cta--${variant}`} aria-label="About the book">
-  <div class="book-cta__cover" aria-hidden={BOOK.cover ? undefined : "true"}>
+<aside class={`book-cta book-cta--${variant}`} aria-label={`About ${book.title}`}>
+  <div class="book-cta__cover" aria-hidden={book.cover ? undefined : "true"}>
     {
-      BOOK.cover ? (
+      book.cover ? (
         <img
-          src={BOOK.cover}
-          alt={`Cover of ${BOOK.title}`}
+          src={book.cover}
+          alt={book.coverAlt}
           width="160"
           height="240"
           loading="lazy"
@@ -30,24 +31,24 @@ const { variant = "post" } = Astro.props;
     }
   </div>
   <div class="book-cta__text">
-    <p class="book-cta__eyebrow">The Book</p>
-    <h2 class="book-cta__title">{BOOK.title}</h2>
-    <p class="book-cta__hook">{BOOK.hook}</p>
-    <p class="book-cta__blurb">{BOOK.blurb}</p>
+    <p class="book-cta__eyebrow">The {book.kind === "journal" ? "Journal" : "Book"}</p>
+    <h2 class="book-cta__title">{book.title}</h2>
+    {book.hook && <p class="book-cta__hook">{book.hook}</p>}
+    <p class="book-cta__blurb">{book.blurb}</p>
     <div class="book-cta__actions">
       {
-        hasAmazonLink && (
+        hasAmazonLink(book) && (
           <a
-            href={BOOK.amazonUrl}
+            href={book.amazonUrl}
             class="btn-primary"
             rel="noopener noreferrer"
             target="_blank"
           >
-            Get it on Amazon
+            Buy on Amazon
           </a>
         )
       }
-      <a href="/books/the-hyperconnected-self/" class="btn">About the book</a>
+      <a href={`/books/${book.slug}/`} class="btn">About the {book.kind}</a>
     </div>
   </div>
 </aside>

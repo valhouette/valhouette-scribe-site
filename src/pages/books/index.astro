@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BookCTA from "../../components/BookCTA.astro";
+import { BOOKS } from "../../data/book";
+---
+
+<BaseLayout
+  title="Books | Valhouette Scribe"
+  description="Books and companion journals by Valhouette Scribe."
+>
+  <section class="section">
+    <div class="container container--content">
+      <p class="page-eyebrow">BOOKS</p>
+      <h1 class="page-title">Books</h1>
+      {BOOKS.map((book) => <BookCTA book={book} />)}
+    </div>
+  </section>
+</BaseLayout>

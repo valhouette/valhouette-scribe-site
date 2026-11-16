@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { BOOKS, hasAmazonLink } from "../../data/book";
+
+const book = BOOKS.find((entry) => entry.slug === "the-quiet-record");
+
+if (!book) {
+  throw new Error("The Quiet Record book data is missing.");
+}
+
+const bookSchema = {
+  "@context": "https://schema.org",
+  "@type": "Book",
+  name: book.title,
+  alternativeHeadline: book.subtitle,
+  author: { "@type": "Person", name: book.author },
+  inLanguage: "en-GB",
+  description: book.description,
+  url: "https://valhouettescribe.com/books/the-quiet-record/",
+  ...(hasAmazonLink(book) ? { sameAs: book.amazonUrl } : {}),
+};
+---
+<BaseLayout
+  title="The Quiet Record | Valhouette Scribe"
+  description="A companion journal for self-reflection in a hyper-connected world. Twelve sections, room to write, and space to hear yourself think."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(bookSchema)} />
+  <section class="section">
+    <div class="container container--content book">
+      <p class="page-eyebrow">THE {book.kind.toUpperCase()}</p>
+      <h1 class="page-title">{book.title}</h1>
+      <p class="book__sub">{book.subtitle}</p>
+      <hr class="page-rule" />
+
+      <img
+        class="book__cover"
+        src={book.cover}
+        alt={book.coverAlt}
+        width="240"
+        height="360"
+        decoding="async"
+      />
+
+      <div class="book__body">
+        {book.body?.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+
+      <div class="book__actions">
+        {hasAmazonLink(book) && <a href={book.amazonUrl} class="btn-primary" rel="noopener noreferrer" target="_blank">Buy on Amazon</a>}
+        <a href="/blog/" class="btn">Read the essays</a>
+      </div>
+      <p class="book__note">Best alongside <a href="/books/the-hyperconnected-self/">The Hyperconnected Self</a>.</p>
+    </div>
+  </section>
+</BaseLayout>
+<style>
+  .book__sub { font-family: var(--font-serif); font-style: italic; color: var(--muted); font-size: 1.15rem; line-height: 1.6; }
+  .book__cover { display: block; margin: 0 auto 2rem; max-width: 240px; height: auto; }
+  .book__body p { margin-bottom: 1.25rem; line-height: 1.85; }
+  .book__body h2 { font-size: 1.4rem; margin: 2.25rem 0 1rem; }
+  .book__body ul { padding-left: 1.25rem; margin-bottom: 1.5rem; color: var(--body); line-height: 1.9; }
+  .book__hook { font-family: var(--font-serif); font-style: italic; font-size: 1.4rem; color: var(--accent-warm); }
+  .book__note { color: var(--muted); font-size: .9rem; }
+  .book__actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+</style>
